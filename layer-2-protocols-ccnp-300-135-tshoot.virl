@@ -3,6 +3,7 @@
     <extensions>
         <entry key="AutoNetkit.enable_routing" type="Boolean">false</entry>
         <entry key="AutoNetkit.infrastructure_only" type="Boolean">true</entry>
+        <entry key="lxc.host.static_ip" type="String">172.16.1.11</entry>
     </extensions>
     <node name="SW1" type="SIMPLE" subtype="IOSvL2" location="642,160" coordinate="52.72298552457069,-115.0927734375" ipv4="192.168.1.1" ipv6="::1:1">
         <extensions>
