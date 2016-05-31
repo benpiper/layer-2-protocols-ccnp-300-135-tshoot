@@ -480,7 +480,7 @@ end</entry>
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
             <entry key="static_serial_port_0" type="Integer">4003</entry>
             <entry key="config" type="String">!
-! Last configuration change at 16:34:46 UTC Sat Apr 9 2016
+! Last configuration change at 15:41:41 UTC Tue May 31 2016
 !
 version 15.2
 service timestamps debug datetime msec
@@ -505,6 +505,8 @@ vrf definition Mgmt-intf
 enable password cisco
 !
 no aaa new-model
+no process cpu extended history
+no process cpu autoprofile hog
 !
 !
 !
@@ -520,6 +522,7 @@ ip cef
 no ipv6 cef
 !
 !
+no memory lite
 !
 spanning-tree mode rapid-pvst
 spanning-tree extend system-id
@@ -533,6 +536,7 @@ vlan 200
 !
 vlan 300
  name Management
+no cdp run
 !
 ! 
 !
@@ -557,6 +561,7 @@ interface GigabitEthernet0/1
  switchport mode access
  media-type rj45
  negotiation auto
+ no cdp enable
 !
 interface GigabitEthernet0/2
  description GigabitEthernet0/2
@@ -564,17 +569,20 @@ interface GigabitEthernet0/2
  switchport mode access
  media-type rj45
  negotiation auto
+ no cdp enable
 !
 interface GigabitEthernet0/3
  media-type rj45
  negotiation auto
+ no cdp enable
 !
 interface GigabitEthernet0/0
  description OOB management
  no switchport
  vrf forwarding Mgmt-intf
- ip address 10.255.0.231 255.255.0.0
+ ip address 10.255.0.97 255.255.0.0
  negotiation auto
+ no cdp enable
 !
 interface GigabitEthernet1/0
  description to SW1
@@ -583,6 +591,7 @@ interface GigabitEthernet1/0
  switchport mode trunk
  media-type rj45
  negotiation auto
+ no cdp enable
 !
 interface GigabitEthernet1/1
  description GigabitEthernet1/1
@@ -590,6 +599,7 @@ interface GigabitEthernet1/1
  switchport mode access
  media-type rj45
  negotiation auto
+ no cdp enable
 !
 interface GigabitEthernet1/2
  description to SW4
@@ -598,6 +608,7 @@ interface GigabitEthernet1/2
  switchport mode trunk
  media-type rj45
  negotiation auto
+ no cdp enable
 !
 interface GigabitEthernet1/3
  description to SW5
@@ -606,12 +617,15 @@ interface GigabitEthernet1/3
  switchport mode trunk
  media-type rj45
  negotiation auto
+ no cdp enable
 !
 interface GigabitEthernet2/0
  description to PC1
+ switchport access vlan 100
  switchport mode access
  media-type rj45
  negotiation auto
+ no cdp enable
 !
 interface GigabitEthernet2/1
  description GigabitEthernet2/1
@@ -619,10 +633,12 @@ interface GigabitEthernet2/1
  switchport mode access
  media-type rj45
  negotiation auto
+ no cdp enable
 !
 interface GigabitEthernet2/2
  media-type rj45
  negotiation auto
+ no cdp enable
 !
 interface GigabitEthernet2/3
  description to SW5
@@ -631,6 +647,7 @@ interface GigabitEthernet2/3
  switchport mode trunk
  media-type rj45
  negotiation auto
+ no cdp enable
 !
 interface GigabitEthernet3/0
  description to R7
@@ -638,6 +655,7 @@ interface GigabitEthernet3/0
  switchport mode access
  media-type rj45
  negotiation auto
+ no cdp enable
 !
 ip forward-protocol nd
 !
