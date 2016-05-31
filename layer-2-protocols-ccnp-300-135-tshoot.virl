@@ -736,7 +736,7 @@ end</entry>
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
             <entry key="static_serial_port_0" type="Integer">4004</entry>
             <entry key="config" type="String">!
-! Last configuration change at 18:03:15 UTC Thu May 12 2016
+! Last configuration change at 19:19:09 UTC Tue May 31 2016
 !
 version 15.2
 service timestamps debug datetime msec
@@ -816,7 +816,7 @@ interface GigabitEthernet0/0
  description OOB management
  no switchport
  vrf forwarding Mgmt-intf
- ip address 10.255.0.89 255.255.0.0
+ ip address 10.255.0.120 255.255.0.0
  negotiation auto
  no cdp enable
 !
@@ -844,8 +844,6 @@ interface GigabitEthernet1/2
  switchport mode trunk
  media-type rj45
  negotiation auto
- spanning-tree bpdufilter enable
- spanning-tree guard loop
 !
 interface GigabitEthernet1/3
  description GigabitEthernet1/3
@@ -1289,7 +1287,7 @@ write_files:
         </extensions>
         <interface id="0" name="eth1" ipv4="10.0.0.3" netPrefixLenV4="29"/>
     </node>
-    <node name="R1" type="SIMPLE" subtype="IOSv" location="1016,157" ipv4="192.168.0.1" ipv6="::1">
+    <node name="R1" type="SIMPLE" subtype="IOSv" location="1016,157" ipv4="192.168.0.1" ipv6="::1" excludeFromLaunch="true">
         <extensions>
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
             <entry key="static_serial_port_0" type="Integer">5001</entry>
