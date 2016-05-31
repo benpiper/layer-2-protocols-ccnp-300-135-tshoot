@@ -10,7 +10,7 @@
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
             <entry key="static_serial_port_0" type="Integer">4001</entry>
             <entry key="config" type="String">!
-! Last configuration change at 19:41:55 UTC Sat Apr 9 2016
+! Last configuration change at 18:02:48 UTC Tue May 31 2016
 !
 version 15.2
 service timestamps debug datetime msec
@@ -58,7 +58,6 @@ no ipv6 cef
 !
 spanning-tree mode rapid-pvst
 spanning-tree extend system-id
-spanning-tree vlan 1-1001 priority 4096
 !
 vlan internal allocation policy ascending
 !
@@ -87,6 +86,11 @@ interface Loopback0
  description Loopback
  no ip address
 !
+interface Port-channel1
+ switchport access vlan 2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
 interface GigabitEthernet0/1
  description to SW2
  switchport access vlan 2
@@ -113,7 +117,7 @@ interface GigabitEthernet0/0
  description OOB management
  no switchport
  vrf forwarding Mgmt-intf
- ip address 10.255.0.236 255.255.0.0
+ ip address 10.255.0.100 255.255.0.0
  negotiation auto
  no cdp enable
 !
@@ -132,6 +136,7 @@ interface GigabitEthernet1/1
  switchport mode trunk
  media-type rj45
  negotiation auto
+ channel-group 1 mode on
 !
 interface GigabitEthernet1/2
  media-type rj45
@@ -176,6 +181,7 @@ interface GigabitEthernet3/1
  switchport mode trunk
  media-type rj45
  negotiation auto
+ channel-group 1 mode on
 !
 interface GigabitEthernet3/2
  media-type rj45
@@ -480,7 +486,7 @@ end</entry>
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
             <entry key="static_serial_port_0" type="Integer">4003</entry>
             <entry key="config" type="String">!
-! Last configuration change at 15:41:41 UTC Tue May 31 2016
+! Last configuration change at 17:56:46 UTC Tue May 31 2016
 !
 version 15.2
 service timestamps debug datetime msec
@@ -506,7 +512,6 @@ enable password cisco
 !
 no aaa new-model
 no process cpu extended history
-no process cpu autoprofile hog
 !
 !
 !
@@ -522,7 +527,6 @@ ip cef
 no ipv6 cef
 !
 !
-no memory lite
 !
 spanning-tree mode rapid-pvst
 spanning-tree extend system-id
@@ -555,6 +559,11 @@ interface Loopback0
  description Loopback
  no ip address
 !
+interface Port-channel2
+ switchport access vlan 2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
 interface GigabitEthernet0/1
  description GigabitEthernet0/1
  switchport access vlan 2
@@ -580,7 +589,7 @@ interface GigabitEthernet0/0
  description OOB management
  no switchport
  vrf forwarding Mgmt-intf
- ip address 10.255.0.97 255.255.0.0
+ ip address 10.255.0.102 255.255.0.0
  negotiation auto
  no cdp enable
 !
@@ -618,6 +627,7 @@ interface GigabitEthernet1/3
  media-type rj45
  negotiation auto
  no cdp enable
+ channel-group 2 mode on
 !
 interface GigabitEthernet2/0
  description to PC1
@@ -648,6 +658,7 @@ interface GigabitEthernet2/3
  media-type rj45
  negotiation auto
  no cdp enable
+ channel-group 2 mode on
 !
 interface GigabitEthernet3/0
  description to R7
@@ -1008,7 +1019,7 @@ write_files:&#xD;
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
             <entry key="static_serial_port_0" type="Integer">4005</entry>
             <entry key="config" type="String">!
-! Last configuration change at 15:33:39 UTC Sat Apr 9 2016
+! Last configuration change at 17:55:20 UTC Tue May 31 2016
 !
 version 15.2
 service timestamps debug datetime msec
@@ -1038,8 +1049,6 @@ no aaa new-model
 !
 !
 !
-vtp domain virl.lab
-vtp mode transparent
 !
 !
 !
@@ -1053,11 +1062,6 @@ spanning-tree mode rapid-pvst
 spanning-tree extend system-id
 !
 vlan internal allocation policy ascending
-!
-vlan 2
- name ank_vlan2
-!
-vlan 100 
 !
 ! 
 !
@@ -1076,9 +1080,16 @@ interface Loopback0
  description Loopback
  no ip address
 !
+interface Port-channel2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface Port-channel1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
 interface GigabitEthernet0/1
  description GigabitEthernet0/1
- switchport access vlan 2
  switchport mode access
  media-type rj45
  negotiation auto
@@ -1095,7 +1106,7 @@ interface GigabitEthernet0/0
  description OOB management
  no switchport
  vrf forwarding Mgmt-intf
- ip address 10.255.0.229 255.255.0.0
+ ip address 10.255.0.99 255.255.0.0
  negotiation auto
  no cdp enable
 !
@@ -1105,15 +1116,14 @@ interface GigabitEthernet1/0
 !
 interface GigabitEthernet1/1
  description to SW1
- switchport access vlan 2
  switchport trunk encapsulation dot1q
  switchport mode trunk
  media-type rj45
  negotiation auto
+ channel-group 1 mode on
 !
 interface GigabitEthernet1/2
  description to SW2
- switchport access vlan 2
  switchport trunk encapsulation dot1q
  switchport mode trunk
  media-type rj45
@@ -1121,11 +1131,11 @@ interface GigabitEthernet1/2
 !
 interface GigabitEthernet1/3
  description to SW3
- switchport access vlan 2
  switchport trunk encapsulation dot1q
  switchport mode trunk
  media-type rj45
  negotiation auto
+ channel-group 2 mode on
 !
 interface GigabitEthernet2/0
  media-type rj45
@@ -1141,11 +1151,11 @@ interface GigabitEthernet2/2
 !
 interface GigabitEthernet2/3
  description to SW3
- switchport access vlan 2
  switchport trunk encapsulation dot1q
  switchport mode trunk
  media-type rj45
  negotiation auto
+ channel-group 2 mode on
 !
 interface GigabitEthernet3/0
  media-type rj45
@@ -1153,11 +1163,11 @@ interface GigabitEthernet3/0
 !
 interface GigabitEthernet3/1
  description to SW1
- switchport access vlan 2
  switchport trunk encapsulation dot1q
  switchport mode trunk
  media-type rj45
  negotiation auto
+ channel-group 1 mode on
 !
 ip forward-protocol nd
 !
