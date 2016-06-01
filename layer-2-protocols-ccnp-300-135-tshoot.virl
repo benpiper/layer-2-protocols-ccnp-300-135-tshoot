@@ -10,7 +10,7 @@
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
             <entry key="static_serial_port_0" type="Integer">4001</entry>
             <entry key="config" type="String">!
-! Last configuration change at 18:02:48 UTC Tue May 31 2016
+! Last configuration change at 04:24:38 UTC Wed Jun 1 2016
 !
 version 15.2
 service timestamps debug datetime msec
@@ -88,12 +88,14 @@ interface Loopback0
 !
 interface Port-channel1
  switchport access vlan 2
+ switchport trunk allowed vlan 1-99,101-4094
  switchport trunk encapsulation dot1q
  switchport mode trunk
 !
 interface GigabitEthernet0/1
  description to SW2
  switchport access vlan 2
+ switchport trunk allowed vlan 1-99,101-4094
  switchport trunk encapsulation dot1q
  switchport mode trunk
  media-type rj45
@@ -117,13 +119,14 @@ interface GigabitEthernet0/0
  description OOB management
  no switchport
  vrf forwarding Mgmt-intf
- ip address 10.255.0.100 255.255.0.0
+ ip address 10.255.0.134 255.255.0.0
  negotiation auto
  no cdp enable
 !
 interface GigabitEthernet1/0
  description to SW3
  switchport access vlan 2
+ switchport trunk allowed vlan 1-99,101-4094
  switchport trunk encapsulation dot1q
  switchport mode trunk
  media-type rj45
@@ -132,6 +135,7 @@ interface GigabitEthernet1/0
 interface GigabitEthernet1/1
  description to SW5
  switchport access vlan 2
+ switchport trunk allowed vlan 1-99,101-4094
  switchport trunk encapsulation dot1q
  switchport mode trunk
  media-type rj45
@@ -156,6 +160,7 @@ interface GigabitEthernet2/0
 interface GigabitEthernet2/1
  description to SW2
  switchport access vlan 2
+ switchport trunk allowed vlan 1-99,101-4094
  switchport trunk encapsulation dot1q
  switchport mode trunk
  media-type rj45
@@ -177,6 +182,7 @@ interface GigabitEthernet3/0
 interface GigabitEthernet3/1
  description to SW5
  switchport access vlan 2
+ switchport trunk allowed vlan 1-99,101-4094
  switchport trunk encapsulation dot1q
  switchport mode trunk
  media-type rj45
