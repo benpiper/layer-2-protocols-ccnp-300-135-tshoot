@@ -492,7 +492,7 @@ end</entry>
             <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
             <entry key="static_serial_port_0" type="Integer">4003</entry>
             <entry key="config" type="String">!
-! Last configuration change at 17:56:46 UTC Tue May 31 2016
+! Last configuration change at 17:42:13 UTC Tue Jun 7 2016
 !
 version 15.2
 service timestamps debug datetime msec
@@ -536,6 +536,7 @@ no ipv6 cef
 !
 spanning-tree mode rapid-pvst
 spanning-tree extend system-id
+spanning-tree vlan 100 priority 28672
 !
 vlan internal allocation policy ascending
 !
@@ -595,7 +596,7 @@ interface GigabitEthernet0/0
  description OOB management
  no switchport
  vrf forwarding Mgmt-intf
- ip address 10.255.0.102 255.255.0.0
+ ip address 10.255.0.214 255.255.0.0
  negotiation auto
  no cdp enable
 !
